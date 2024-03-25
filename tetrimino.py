@@ -1,50 +1,34 @@
-import pygame
-import time
+import pygame as pg
 
-class Tetrimino:
-    def __init__(type):
-        self.x = 0
-        self.y = 0
+class Player:
+    def __init__(self, wh):
+        self.img = pg.image.load("img/Player.png")
+        self.rect = self.img.get_rect()
+        self.rect.y = wh - self.img.get_height()
 
+class Pig:
+    def __init__(self):
+        self.img
 
-pygame.init()
+pg.init()
 win_width = 800
 win_height = 600
-win = pygame.display.set_mode((win_width, win_height))
-clock = pygame.time.Clock()
+win = pg.display.set_mode((win_width, win_height))
+clock = pg.time.Clock()
 
-fall_speed = 0.5
-start_time = time,.time()
-grid = [[0 for _ in range(10)] for _ in range(20)]
-tetrominoes =  [
-    # 'I' Tetromino
-    [[1, 1, 1, 1],
-     [0, 0, 0, 0],
-     [0, 0, 0, 0],
-     [0, 0, 0, 0]],
-    # Other Tetrominoes...
-]
-
+player = Player(win_height)
 running = True
 while running:
-    if time.time() - start_time > fall_speed:
-        # Move the Tetromino down
-        current_tetromino.y += 1
-        start_time = time.time()
-
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                current_tetromino.x -= 1
-            elif event.key == pygame.K_RIGHT:
-                current_tetromino.x += 1
-            elif event.key == pygame.K_DOWN:
-                current_tetromino.y += 1
-            elif event.key == pygame.K_UP:
-                current_tetromino.rotate()
-
-
-        if event.type == pygame.QUIT:
+    for event in pg.event.get():
+        #if event.type == pg.KEYDOWN:
+        #    if event.key == pg.K_LEFT:
+        #    elif event.key == pg.K_RIGHT:
+        #    elif event.key == pg.K_DOWN:
+        #    elif event.key == pg.K_UP:
+                
+        if event.type == pg.QUIT:
             running = False
-    
-    pygame.display.update()
+
+    win.blit(player.img, player.rect)
+
+    pg.display.update()
